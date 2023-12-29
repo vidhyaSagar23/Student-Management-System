@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Management System</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Student Management System</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/get-all-students}">Student Management</a>
+        </li>
+ 
+      </ul>
+    </div>
+  </div>
+</nav>
+	<div class="container">
+		<div class="row">
+			<h1>List Students</h1>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-3">
+				<a th:href="@{/add-student-form}" class="btn btn-primary mb-3">Add Student</a>
+			</div>
+		</div>
+		<table class="table table-striped table-bordered">
+			<thead class="table-dark">
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Student Email</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="student : ${students}">
+					<td th:text="${student.firstName}"></td>
+					<td th:text="${student.lastName}"></td>
+					<td th:text="${student.email}"></td>
+					<td>
+						<a th:href="@{updateform/{studentId}(studentId=${student.studentId})}" class="btn btn-primary">Update</a>
+						<a th:href="@{delete/{studentId}(studentId=${student.studentId})}" class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
